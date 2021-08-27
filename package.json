@@ -1,10 +1,13 @@
 {
   "name": "react-native-paper-navigation-theme-context",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Theme Context for react-native (needs react, react-native, @react-native-async-storage/async-storage, react-native-paper and @react-navigation/native), to support Light, Dark and Default (your device) theme for your react-native-paper and react-navigation components.",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node dist/test.js",
+    "build": "tsc",
+    "release": "standard-version",
+    "share": "git push --follow-tags origin main && npm publish"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,18 @@
   "bugs": {
     "url": "https://github.com/JebBarbas/react-native-paper-navigation-theme-context/issues"
   },
-  "homepage": "https://github.com/JebBarbas/react-native-paper-navigation-theme-context#readme"
+  "homepage": "https://github.com/JebBarbas/react-native-paper-navigation-theme-context#readme",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.7",
+    "@react-navigation/native": "^6.0.2",
+    "react": "^17.0.2",
+    "react-native": "^0.65.1",
+    "react-native-paper": "^4.9.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.19",
+    "@types/react-native": "^0.64.13",
+    "standard-version": "^9.3.1",
+    "typescript": "^4.4.2"
+  }
 }
