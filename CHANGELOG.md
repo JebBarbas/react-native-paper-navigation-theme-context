@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.0.4...v1.1.0) (2021-08-27)
+
+
+### Features
+
+* Now useLocalColorScheme returns a string instead of Promise<string> and I think that the hook problem is solved ❤ ([23f0279](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/commit/23f027909333db2a10143a4ba03ded352085a4b8))
+
 ### [1.0.4](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.0.3...v1.0.4) (2021-08-27)
 
 
