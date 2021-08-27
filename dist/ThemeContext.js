@@ -67,9 +67,7 @@ var async_storage_1 = __importDefault(require("@react-native-async-storage/async
 // CONTEXT USE AND PROVIDER //
 var themeContextDefaultValue = {
     COLOR_SCHEME: { LIGHT: 'light', DARK: 'dark', DEFAULT: 'default' },
-    useLocalColorScheme: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-        return [2 /*return*/, 'light'];
-    }); }); },
+    useLocalColorScheme: function () { return 'light'; },
     useMixedTheme: function () { return themes_1.DefaultTheme; },
     updateThemeLight: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/];
@@ -100,21 +98,22 @@ var ThemeProvider = function (_a) {
     // END THEME CREATOR //
     // START COMPONENT STATE //
     var _b = (0, react_1.useState)(createAppTheme('light')), theme = _b[0], setTheme = _b[1];
+    var _c = (0, react_1.useState)(COLOR_SCHEME.LIGHT), localColorScheme = _c[0], setLocalColorScheme = _c[1];
     var deviceColorSheme = (0, react_native_1.useColorScheme)();
     // END COMPONENT STATE
     // START ASYNC STORAGE //
-    var useLocalColorScheme = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var localColorScheme, _a;
+    var getLocalColorScheme = function () { return __awaiter(void 0, void 0, void 0, function () {
+        var localColorScheme_1, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     return [4 /*yield*/, async_storage_1.default.getItem(localColorSchemeKey)];
                 case 1:
-                    localColorScheme = _b.sent();
-                    if (localColorScheme === COLOR_SCHEME.LIGHT)
+                    localColorScheme_1 = _b.sent();
+                    if (localColorScheme_1 === COLOR_SCHEME.LIGHT)
                         return [2 /*return*/, COLOR_SCHEME.LIGHT];
-                    else if (localColorScheme === COLOR_SCHEME.DARK)
+                    else if (localColorScheme_1 === COLOR_SCHEME.DARK)
                         return [2 /*return*/, COLOR_SCHEME.DARK];
                     else
                         return [2 /*return*/, COLOR_SCHEME.DEFAULT];
@@ -127,7 +126,7 @@ var ThemeProvider = function (_a) {
             }
         });
     }); };
-    var setLocalColorScheme = function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
+    var saveLocalColorScheme = function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
         var putable, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -160,7 +159,7 @@ var ThemeProvider = function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, useLocalColorScheme()];
+                    return [4 /*yield*/, getLocalColorScheme()];
                 case 1:
                     force = _a.sent();
                     if (force === COLOR_SCHEME.DEFAULT) {
@@ -170,6 +169,7 @@ var ThemeProvider = function (_a) {
                         theme_1 = createAppTheme(force);
                     }
                     setTheme(theme_1);
+                    setLocalColorScheme(force);
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -182,7 +182,7 @@ var ThemeProvider = function (_a) {
     var updateThemeWith = function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, setLocalColorScheme(colorSchemeValue)];
+                case 0: return [4 /*yield*/, saveLocalColorScheme(colorSchemeValue)];
                 case 1:
                     _a.sent();
                     return [4 /*yield*/, updateTheme()];
@@ -198,6 +198,7 @@ var ThemeProvider = function (_a) {
     // END STATE UPDATE //
     // START STATE GETER //
     var useMixedTheme = function () { return theme; };
+    var useLocalColorScheme = function () { return localColorScheme; };
     // END STATE GETER //
     // START USEEFFECT AND RETURNS //
     (0, react_1.useEffect)(function () {

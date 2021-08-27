@@ -25,7 +25,7 @@ type ColorSchemeNameObject = {
 
 type ContextValue = {
     COLOR_SCHEME: ColorSchemeNameObject,
-    useLocalColorScheme: () => Promise<ColorSchemeName>,
+    useLocalColorScheme: () => ColorSchemeName,
     useMixedTheme: () => MixedTheme,
     updateThemeLight: () => Promise<void>,
     updateThemeDark: () => Promise<void>,
@@ -36,7 +36,7 @@ type ContextValue = {
 // CONTEXT USE AND PROVIDER //
 const themeContextDefaultValue:ContextValue = {
     COLOR_SCHEME: {LIGHT:'light', DARK:'dark',DEFAULT:'default'},
-    useLocalColorScheme: async () => 'light',
+    useLocalColorScheme: () => 'light',
     useMixedTheme: () => DefaultTheme,
     updateThemeLight: async () => {},
     updateThemeDark: async () => {},
@@ -64,11 +64,12 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
 
     // START COMPONENT STATE //
     const [theme, setTheme] = useState(createAppTheme('light'))
+    const [localColorScheme, setLocalColorScheme] = useState(COLOR_SCHEME.LIGHT)
     const deviceColorSheme = useColorScheme()
     // END COMPONENT STATE
 
     // START ASYNC STORAGE //
-    const useLocalColorScheme = async () => {
+    const getLocalColorScheme = async () => {
         try{
             const localColorScheme = await AsyncStorage.getItem(localColorSchemeKey)
             if(localColorScheme === COLOR_SCHEME.LIGHT) return COLOR_SCHEME.LIGHT
@@ -81,7 +82,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
         }
     }
 
-    const setLocalColorScheme = async (colorSchemeValue:ColorSchemeName) => {
+    const saveLocalColorScheme = async (colorSchemeValue:ColorSchemeName) => {
         try{
             let putable:ColorSchemeName
             if(colorSchemeValue === COLOR_SCHEME.LIGHT || colorSchemeValue === COLOR_SCHEME.DARK){
@@ -103,7 +104,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
     const updateTheme = async () => {
         try{
             let theme:MixedTheme
-            const force = await useLocalColorScheme()
+            const force = await getLocalColorScheme()
 
             if(force === COLOR_SCHEME.DEFAULT){
                 theme = createAppTheme(deviceColorSheme ?? 'light')
@@ -113,6 +114,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
             }
 
             setTheme(theme)
+            setLocalColorScheme(force)
         }
         catch(err){
             console.error(err)
@@ -120,7 +122,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
     }
 
     const updateThemeWith = async (colorSchemeValue:ColorSchemeName) => {
-        await setLocalColorScheme(colorSchemeValue)
+        await saveLocalColorScheme(colorSchemeValue)
         await updateTheme()
     }
 
@@ -131,6 +133,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
 
     // START STATE GETER //
     const useMixedTheme = () => theme
+    const useLocalColorScheme = () => localColorScheme
     // END STATE GETER //
 
     // START USEEFFECT AND RETURNS //

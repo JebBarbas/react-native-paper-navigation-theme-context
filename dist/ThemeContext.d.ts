@@ -11,7 +11,7 @@ declare type ColorSchemeNameObject = {
 };
 declare type ContextValue = {
     COLOR_SCHEME: ColorSchemeNameObject;
-    useLocalColorScheme: () => Promise<ColorSchemeName>;
+    useLocalColorScheme: () => ColorSchemeName;
     useMixedTheme: () => MixedTheme;
     updateThemeLight: () => Promise<void>;
     updateThemeDark: () => Promise<void>;

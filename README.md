@@ -116,8 +116,8 @@ const App = () => {
     )
 }
 ```
-- useLocalColorScheme (function): Returns a Promise of the localColorScheme that is being used, resolved promise 
-can return: `COLOR_SCHEME.LIGHT`, `COLOR_SCHEME.DARK` or `COLOR_SCHEME.DEFAULT`.
+- useLocalColorScheme (function): Returns the localColorScheme that is being used, can return: 
+`COLOR_SCHEME.LIGHT`, `COLOR_SCHEME.DARK` or `COLOR_SCHEME.DEFAULT`.
 - useMixedTheme (function): Returns the theme that is being used. Can be used if you want to extract for example
 a color of the theme:
 ```jsx
