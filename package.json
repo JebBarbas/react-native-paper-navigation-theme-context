@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/JebBarbas/react-native-paper-navigation-theme-context.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["react","react-native","react-native-paper","react-navigation","theme","darkmode"],
+  "author": "jebbarbas",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JebBarbas/react-native-paper-navigation-theme-context/issues"
