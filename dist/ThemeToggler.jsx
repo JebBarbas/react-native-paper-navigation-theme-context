@@ -87,15 +87,29 @@ var ThemeToggler = function (props) {
             }
         });
     }); }, []);
+    // To recharge the component once the theme is changed
+    var updateAndLoad = (0, react_1.useCallback)(function (updateFunction) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, updateFunction()];
+                case 1:
+                    _a.sent();
+                    return [4 /*yield*/, loadLocalColorScheme()];
+                case 2:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); }, []);
     (0, react_1.useEffect)(function () {
         loadLocalColorScheme();
     }, []);
     return (<react_native_1.View style={styles.flex}>
-            <react_native_paper_1.IconButton icon={props.lightButtonIconName || "brightness-7"} color={localColorScheme === COLOR_SCHEME.LIGHT ? primary : text} onPress={updateThemeLight}/>
+            <react_native_paper_1.IconButton icon={props.lightButtonIconName || "brightness-7"} color={localColorScheme === COLOR_SCHEME.LIGHT ? primary : text} onPress={function () { return updateAndLoad(updateThemeLight); }}/>
 
-            <react_native_paper_1.IconButton icon={props.darkButtonIconName || "brightness-3"} color={localColorScheme === COLOR_SCHEME.DARK ? primary : text} onPress={updateThemeDark}/>
+            <react_native_paper_1.IconButton icon={props.darkButtonIconName || "brightness-3"} color={localColorScheme === COLOR_SCHEME.DARK ? primary : text} onPress={function () { return updateAndLoad(updateThemeDark); }}/>
 
-            <react_native_paper_1.IconButton icon={props.defaultButtonIconName || "brightness-4"} color={localColorScheme === COLOR_SCHEME.DEFAULT ? primary : text} onPress={updateThemeDefault}/>
+            <react_native_paper_1.IconButton icon={props.defaultButtonIconName || "brightness-4"} color={localColorScheme === COLOR_SCHEME.DEFAULT ? primary : text} onPress={function () { return updateAndLoad(updateThemeDefault); }}/>
         </react_native_1.View>);
 };
 exports.default = ThemeToggler;

@@ -9,6 +9,8 @@ interface ThemeTogglerProps {
     defaultButtonIconName?: string,
 }
 
+type UpdateThemeFunction = () => Promise<void>
+
 const ThemeToggler:FC<ThemeTogglerProps> = (props) => {
     // Imports all useTheme functions
     const {
@@ -39,28 +41,35 @@ const ThemeToggler:FC<ThemeTogglerProps> = (props) => {
         }
     },[])
 
+    // To recharge the component once the theme is changed
+    const updateAndLoad = useCallback(async (updateFunction:UpdateThemeFunction) => {
+        await updateFunction()
+        await loadLocalColorScheme()
+    },[])
+
+
     useEffect(()=>{
         loadLocalColorScheme()
-    }, [])
+    },[])
 
     return (
         <View style={styles.flex}>
             <IconButton 
                 icon={props.lightButtonIconName || "brightness-7" }
                 color={localColorScheme === COLOR_SCHEME.LIGHT ? primary : text} 
-                onPress={updateThemeLight}
+                onPress={() => updateAndLoad(updateThemeLight)}
             />
 
             <IconButton 
                 icon={props.darkButtonIconName || "brightness-3" }
                 color={localColorScheme === COLOR_SCHEME.DARK ? primary : text} 
-                onPress={updateThemeDark}
+                onPress={() => updateAndLoad(updateThemeDark)}
             />
 
             <IconButton 
                 icon={props.defaultButtonIconName || "brightness-4" }
                 color={localColorScheme === COLOR_SCHEME.DEFAULT ? primary : text} 
-                onPress={updateThemeDefault}
+                onPress={() => updateAndLoad(updateThemeDefault)}
             />
         </View>
     )
