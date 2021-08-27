@@ -119,4 +119,4 @@ var styles = react_native_1.StyleSheet.create({
         justifyContent: 'space-around'
     },
 });
-//# sourceMappingURL=ThemeToggler.jsx.map
+//# sourceMappingURL=ThemeToggler.js.map
