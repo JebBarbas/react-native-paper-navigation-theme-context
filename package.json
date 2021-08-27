@@ -1,6 +1,6 @@
 {
   "name": "react-native-paper-navigation-theme-context",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Theme Context for react-native (needs react, react-native, @react-native-async-storage/async-storage, react-native-paper and @react-navigation/native), to support Light, Dark and Default (your device) theme for your react-native-paper and react-navigation components.",
   "main": "dist/index.js",
   "scripts": {
@@ -13,7 +13,14 @@
     "type": "git",
     "url": "git+https://github.com/JebBarbas/react-native-paper-navigation-theme-context.git"
   },
-  "keywords": ["react","react-native","react-native-paper","react-navigation","theme","darkmode"],
+  "keywords": [
+    "react",
+    "react-native",
+    "react-native-paper",
+    "react-navigation",
+    "theme",
+    "darkmode"
+  ],
   "author": "jebbarbas",
   "license": "ISC",
   "bugs": {
