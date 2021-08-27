@@ -68,7 +68,7 @@ var ThemeToggler = function (props) {
     // Stores the primary and text color to indicate what theme is in usage
     var _c = useMixedTheme().colors, primary = _c.primary, text = _c.text;
     // Creates an async function to set the localColorScheme
-    var loadLocalColorScheme = (0, react_1.useCallback)(function () { return __awaiter(void 0, void 0, void 0, function () {
+    var loadLocalColorScheme = function () { return __awaiter(void 0, void 0, void 0, function () {
         var localColorScheme_1, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -86,9 +86,9 @@ var ThemeToggler = function (props) {
                 case 3: return [2 /*return*/];
             }
         });
-    }); }, []);
+    }); };
     // To recharge the component once the theme is changed
-    var updateAndLoad = (0, react_1.useCallback)(function (updateFunction) { return __awaiter(void 0, void 0, void 0, function () {
+    var updateAndLoad = function (updateFunction) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, updateFunction()];
@@ -100,7 +100,7 @@ var ThemeToggler = function (props) {
                     return [2 /*return*/];
             }
         });
-    }); }, []);
+    }); };
     (0, react_1.useEffect)(function () {
         loadLocalColorScheme();
     }, []);

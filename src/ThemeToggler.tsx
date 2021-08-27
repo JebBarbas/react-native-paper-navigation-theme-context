@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect, useCallback} from 'react'
+import React, {FC, useState, useEffect} from 'react'
 import { StyleSheet, View } from 'react-native';
 import { IconButton } from "react-native-paper";
 import { useTheme } from "./ThemeContext";
@@ -30,7 +30,7 @@ const ThemeToggler:FC<ThemeTogglerProps> = (props) => {
     const { primary, text } = useMixedTheme().colors
 
     // Creates an async function to set the localColorScheme
-    const loadLocalColorScheme = useCallback(async () => {
+    const loadLocalColorScheme = async () => {
         try{
             // useLocalColorScheme returns a Promise, so, will await it
             const localColorScheme = await useLocalColorScheme()
@@ -39,13 +39,13 @@ const ThemeToggler:FC<ThemeTogglerProps> = (props) => {
         catch(err){
             console.error('Error loading the colorScheme from storage:',err)
         }
-    },[])
+    }
 
     // To recharge the component once the theme is changed
-    const updateAndLoad = useCallback(async (updateFunction:UpdateThemeFunction) => {
+    const updateAndLoad = async (updateFunction:UpdateThemeFunction) => {
         await updateFunction()
         await loadLocalColorScheme()
-    },[])
+    }
 
 
     useEffect(()=>{

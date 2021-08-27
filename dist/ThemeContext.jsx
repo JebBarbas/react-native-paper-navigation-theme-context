@@ -89,21 +89,21 @@ exports.useTheme = useTheme;
 var ThemeProvider = function (_a) {
     var children = _a.children, override = _a.override;
     // START MEMO CONSTANTS //
-    var COLOR_SCHEME = (0, react_1.useMemo)(function () { return ({ LIGHT: 'light', DARK: 'dark', DEFAULT: 'default' }); }, []);
-    var localColorSchemeKey = (0, react_1.useMemo)(function () { return 'localColorSheme'; }, []);
+    var COLOR_SCHEME = { LIGHT: 'light', DARK: 'dark', DEFAULT: 'default' };
+    var localColorSchemeKey = 'localColorSheme';
     // END MEMO CONSTANTS //
     // START THEME CREATOR //
-    var createAppTheme = (0, react_1.useCallback)(function (colorSchemeValue) {
+    var createAppTheme = function (colorSchemeValue) {
         var UsedTheme = colorSchemeValue === COLOR_SCHEME.DARK ? themes_1.DarkTheme : themes_1.DefaultTheme;
         return (0, themes_1.overrideTheme)(UsedTheme, override);
-    }, [override]);
+    };
     // END THEME CREATOR //
     // START COMPONENT STATE //
     var _b = (0, react_1.useState)(createAppTheme('light')), theme = _b[0], setTheme = _b[1];
     var deviceColorSheme = (0, react_native_1.useColorScheme)();
     // END COMPONENT STATE
     // START ASYNC STORAGE //
-    var useLocalColorScheme = (0, react_1.useCallback)(function () { return __awaiter(void 0, void 0, void 0, function () {
+    var useLocalColorScheme = function () { return __awaiter(void 0, void 0, void 0, function () {
         var localColorScheme, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -126,8 +126,8 @@ var ThemeProvider = function (_a) {
                 case 3: return [2 /*return*/];
             }
         });
-    }); }, []);
-    var setLocalColorScheme = (0, react_1.useCallback)(function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
+    }); };
+    var setLocalColorScheme = function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
         var putable, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -151,10 +151,10 @@ var ThemeProvider = function (_a) {
                 case 3: return [2 /*return*/];
             }
         });
-    }); }, []);
+    }); };
     // END ASYNC STORAGE //
     // START STATE UPDATE //
-    var updateTheme = (0, react_1.useCallback)(function () { return __awaiter(void 0, void 0, void 0, function () {
+    var updateTheme = function () { return __awaiter(void 0, void 0, void 0, function () {
         var theme_1, force, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -178,8 +178,8 @@ var ThemeProvider = function (_a) {
                 case 3: return [2 /*return*/];
             }
         });
-    }); }, [createAppTheme]);
-    var updateThemeWith = (0, react_1.useCallback)(function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
+    }); };
+    var updateThemeWith = function (colorSchemeValue) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, setLocalColorScheme(colorSchemeValue)];
@@ -191,13 +191,13 @@ var ThemeProvider = function (_a) {
                     return [2 /*return*/];
             }
         });
-    }); }, [updateTheme]);
-    var updateThemeLight = (0, react_1.useCallback)(function () { return updateThemeWith(COLOR_SCHEME.LIGHT); }, [updateThemeWith]);
-    var updateThemeDark = (0, react_1.useCallback)(function () { return updateThemeWith(COLOR_SCHEME.DARK); }, [updateThemeWith]);
-    var updateThemeDefault = (0, react_1.useCallback)(function () { return updateThemeWith(COLOR_SCHEME.DEFAULT); }, [updateThemeWith]);
+    }); };
+    var updateThemeLight = function () { return updateThemeWith(COLOR_SCHEME.LIGHT); };
+    var updateThemeDark = function () { return updateThemeWith(COLOR_SCHEME.DARK); };
+    var updateThemeDefault = function () { return updateThemeWith(COLOR_SCHEME.DEFAULT); };
     // END STATE UPDATE //
     // START STATE GETER //
-    var useMixedTheme = (0, react_1.useCallback)(function () { return theme; }, [theme]);
+    var useMixedTheme = function () { return theme; };
     // END STATE GETER //
     // START USEEFFECT AND RETURNS //
     (0, react_1.useEffect)(function () {
