@@ -3,6 +3,8 @@ import React, {
     createContext, 
     useContext, 
     useState, 
+    useCallback,
+    useMemo,
     useEffect
 } from 'react';
 import { useColorScheme } from 'react-native';
@@ -38,38 +40,38 @@ const themeContextDefaultValue:ContextValue = {
     COLOR_SCHEME: {LIGHT:'light', DARK:'dark',DEFAULT:'default'},
     useLocalColorScheme: () => 'light',
     useMixedTheme: () => DefaultTheme,
-    updateThemeLight: async () => {},
-    updateThemeDark: async () => {},
-    updateThemeDefault: async () => {}
+    updateThemeLight: async () => { 0 },
+    updateThemeDark: async () => { 0 },
+    updateThemeDefault: async () => { 0 }
 }
 const ThemeContext = createContext(themeContextDefaultValue)
 
-export const useTheme = () => {
+export const useTheme = ():ContextValue => {
     return useContext(ThemeContext)
 }
 
 const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {  
     // START MEMO CONSTANTS //
-    const COLOR_SCHEME:ColorSchemeNameObject = {LIGHT: 'light',DARK: 'dark',DEFAULT: 'default'}
+    const COLOR_SCHEME:ColorSchemeNameObject = useMemo(() => ({LIGHT: 'light',DARK: 'dark',DEFAULT: 'default'}), [])
 
     const localColorSchemeKey = 'localColorSheme'
     // END MEMO CONSTANTS //
 
     // START THEME CREATOR //
-    const createAppTheme = (colorSchemeValue:ColorSchemeName):MixedTheme => {
+    const createAppTheme = useCallback((colorSchemeValue:ColorSchemeName):MixedTheme => {
         const UsedTheme = colorSchemeValue === COLOR_SCHEME.DARK ? DarkTheme : DefaultTheme
         return overrideTheme(UsedTheme, override)
-    }
+    }, [COLOR_SCHEME, override])
     // END THEME CREATOR //
 
     // START COMPONENT STATE //
     const [theme, setTheme] = useState(createAppTheme('light'))
     const [localColorScheme, setLocalColorScheme] = useState(COLOR_SCHEME.LIGHT)
-    const deviceColorSheme = useColorScheme()
+    const deviceColorScheme = useColorScheme()
     // END COMPONENT STATE
 
     // START ASYNC STORAGE //
-    const getLocalColorScheme = async () => {
+    const getLocalColorScheme = useCallback(async () => {
         try{
             const localColorScheme = await AsyncStorage.getItem(localColorSchemeKey)
             if(localColorScheme === COLOR_SCHEME.LIGHT) return COLOR_SCHEME.LIGHT
@@ -80,7 +82,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
             console.warn('Error trying to get the local color scheme')
             return COLOR_SCHEME.DEFAULT
         }
-    }
+    }, [COLOR_SCHEME])
 
     const saveLocalColorScheme = async (colorSchemeValue:ColorSchemeName) => {
         try{
@@ -101,13 +103,13 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
     // END ASYNC STORAGE //
 
     // START STATE UPDATE //
-    const updateTheme = async () => {
+    const updateTheme = useCallback(async () => {
         try{
             let theme:MixedTheme
             const force = await getLocalColorScheme()
 
             if(force === COLOR_SCHEME.DEFAULT){
-                theme = createAppTheme(deviceColorSheme ?? 'light')
+                theme = createAppTheme(deviceColorScheme ?? 'light')
             }
             else{
                 theme = createAppTheme(force)
@@ -119,7 +121,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
         catch(err){
             console.error(err)
         }
-    }
+    }, [COLOR_SCHEME, createAppTheme, deviceColorScheme,getLocalColorScheme])
 
     const updateThemeWith = async (colorSchemeValue:ColorSchemeName) => {
         await saveLocalColorScheme(colorSchemeValue)
@@ -139,8 +141,8 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
     // START USEEFFECT AND RETURNS //
     useEffect(()=>{
         updateTheme()
-        return () => {}
-    }, [])
+        return () => { 0 }
+    }, [updateTheme])
 
     const value = {
         COLOR_SCHEME,

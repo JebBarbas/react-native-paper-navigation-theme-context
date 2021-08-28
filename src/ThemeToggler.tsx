@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect} from 'react'
+import React, {FC, useEffect} from 'react'
 import { StyleSheet, View } from 'react-native';
 import { IconButton } from "react-native-paper";
 import { useTheme } from "./ThemeContext";
@@ -8,8 +8,6 @@ interface ThemeTogglerProps {
     darkButtonIconName?: string,
     defaultButtonIconName?: string,
 }
-
-type UpdateThemeFunction = () => Promise<void>
 
 const ThemeToggler:FC<ThemeTogglerProps> = (props) => {
     // Imports all useTheme functions
@@ -28,7 +26,7 @@ const ThemeToggler:FC<ThemeTogglerProps> = (props) => {
     // Stores the primary and text color to indicate what theme is in usage
     const { primary, text } = useMixedTheme().colors
 
-    useEffect(()=>{}, [useLocalColorScheme])
+    useEffect(()=>{0}, [useLocalColorScheme])
 
     return (
         <View style={styles.flex}>
