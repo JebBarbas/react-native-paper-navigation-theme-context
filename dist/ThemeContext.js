@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useMemo, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { DefaultTheme, DarkTheme, overrideTheme } from './themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,14 +18,14 @@ export const useTheme = () => {
 };
 const ThemeProvider = ({ children, override }) => {
     // START MEMO CONSTANTS //
-    const COLOR_SCHEME = useMemo(() => ({ LIGHT: 'light', DARK: 'dark', DEFAULT: 'default' }), []);
+    const COLOR_SCHEME = { LIGHT: 'light', DARK: 'dark', DEFAULT: 'default' };
     const localColorSchemeKey = 'localColorSheme';
     // END MEMO CONSTANTS //
     // START THEME CREATOR //
-    const createAppTheme = useCallback((colorSchemeValue) => {
+    const createAppTheme = (colorSchemeValue) => {
         const UsedTheme = colorSchemeValue === COLOR_SCHEME.DARK ? DarkTheme : DefaultTheme;
         return overrideTheme(UsedTheme, override);
-    }, [COLOR_SCHEME, override]);
+    };
     // END THEME CREATOR //
     // START COMPONENT STATE //
     const [theme, setTheme] = useState(createAppTheme('light'));
@@ -33,7 +33,7 @@ const ThemeProvider = ({ children, override }) => {
     const deviceColorScheme = useColorScheme();
     // END COMPONENT STATE
     // START ASYNC STORAGE //
-    const getLocalColorScheme = useCallback(async () => {
+    const getLocalColorScheme = async () => {
         try {
             const localColorScheme = await AsyncStorage.getItem(localColorSchemeKey);
             if (localColorScheme === COLOR_SCHEME.LIGHT)
@@ -47,7 +47,7 @@ const ThemeProvider = ({ children, override }) => {
             console.warn('Error trying to get the local color scheme');
             return COLOR_SCHEME.DEFAULT;
         }
-    }, [COLOR_SCHEME]);
+    };
     const saveLocalColorScheme = async (colorSchemeValue) => {
         try {
             let putable;
@@ -65,7 +65,7 @@ const ThemeProvider = ({ children, override }) => {
     };
     // END ASYNC STORAGE //
     // START STATE UPDATE //
-    const updateTheme = useCallback(async () => {
+    const updateTheme = async () => {
         try {
             let theme;
             const force = await getLocalColorScheme();
@@ -81,7 +81,7 @@ const ThemeProvider = ({ children, override }) => {
         catch (err) {
             console.error(err);
         }
-    }, [COLOR_SCHEME, createAppTheme, deviceColorScheme, getLocalColorScheme]);
+    };
     const updateThemeWith = async (colorSchemeValue) => {
         await saveLocalColorScheme(colorSchemeValue);
         await updateTheme();
@@ -98,7 +98,7 @@ const ThemeProvider = ({ children, override }) => {
     useEffect(() => {
         updateTheme();
         return () => { 0; };
-    }, [updateTheme]);
+    }, []);
     const value = {
         COLOR_SCHEME,
         useLocalColorScheme,
