@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.1.2...v1.1.3) (2021-08-28)
+
+
+### Bug Fixes
+
+* Removed react from dependencies, it was causing a double react 🧪 ([00158b7](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/commit/00158b7e22c87d5263cb2a6fddd58067b2cb59d8))
+
 ### [1.1.2](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.1.1...v1.1.2) (2021-08-28)
 
 
