@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.1.0...v1.1.1) (2021-08-28)
+
+
+### Bug Fixes
+
+* added tslint and changed ts target (hope this fixes hook errors)😐 ([57061a2](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/commit/57061a2fc433bd0e402408d1b3f7ea10466740c8))
+
 ## [1.1.0](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.0.4...v1.1.0) (2021-08-27)
 
 
