@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.1.3...v1.2.0) (2021-08-29)
+
+
+### Features
+
+* Added 2 built-in components to toggle theme, added more customization to 3 components and added testing ([75eb9ea](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/commit/75eb9ea7000f09ad17da4281505563b03a35748a))
+
 ### [1.1.3](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.1.2...v1.1.3) (2021-08-28)
 
 
