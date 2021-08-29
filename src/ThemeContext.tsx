@@ -40,9 +40,9 @@ const themeContextDefaultValue:ContextValue = {
     COLOR_SCHEME: {LIGHT:'light', DARK:'dark',DEFAULT:'default'},
     useLocalColorScheme: () => 'light',
     useMixedTheme: () => DefaultTheme,
-    updateThemeLight: async () => { 0 },
-    updateThemeDark: async () => { 0 },
-    updateThemeDefault: async () => { 0 }
+    updateThemeLight: async () => { null },
+    updateThemeDark: async () => { null },
+    updateThemeDefault: async () => { null }
 }
 const ThemeContext = createContext(themeContextDefaultValue)
 
@@ -141,7 +141,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({children, override}) => {
     // START USEEFFECT AND RETURNS //
     useEffect(()=>{
         updateTheme()
-        return () => { 0 }
+        return () => { null }
     },[updateTheme])
 
     const value = {

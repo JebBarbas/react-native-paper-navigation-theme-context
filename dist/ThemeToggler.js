@@ -9,17 +9,22 @@ const ThemeToggler = (props) => {
     const localColorScheme = useLocalColorScheme();
     // Stores the primary and text color to indicate what theme is in usage
     const { primary, text } = useMixedTheme().colors;
-    useEffect(() => { 0; }, [useLocalColorScheme]);
-    return (React.createElement(View, { style: styles.flex },
-        React.createElement(IconButton, { icon: props.lightButtonIconName || "brightness-7", color: localColorScheme === COLOR_SCHEME.LIGHT ? primary : text, onPress: updateThemeLight }),
-        React.createElement(IconButton, { icon: props.darkButtonIconName || "brightness-3", color: localColorScheme === COLOR_SCHEME.DARK ? primary : text, onPress: updateThemeDark }),
-        React.createElement(IconButton, { icon: props.defaultButtonIconName || "brightness-4", color: localColorScheme === COLOR_SCHEME.DEFAULT ? primary : text, onPress: updateThemeDefault })));
+    const activeButtonColor = props.selectedButtonColor ?? primary;
+    const inactiveButtonColor = props.defaultButtonColor ?? text;
+    useEffect(() => () => { null; }, [useLocalColorScheme, props]);
+    return (React.createElement(View, { style: props.buttonsDirection === "column" ? styles.flexColumn : styles.flexRow },
+        React.createElement(IconButton, { icon: props.lightButtonIconName || "brightness-7", color: localColorScheme === COLOR_SCHEME.LIGHT ? activeButtonColor : inactiveButtonColor, onPress: updateThemeLight, accessibilityLabel: "Activate Lightmode", size: props.buttonSize, disabled: props.disableLightButton, style: props.lightButtonStyle }),
+        React.createElement(IconButton, { icon: props.darkButtonIconName || "brightness-3", color: localColorScheme === COLOR_SCHEME.DARK ? activeButtonColor : inactiveButtonColor, onPress: updateThemeDark, accessibilityLabel: "Activate Darkmode", size: props.buttonSize, disabled: props.disableDarkButton, style: props.darkButtonStyle }),
+        React.createElement(IconButton, { icon: props.defaultButtonIconName || "brightness-4", color: localColorScheme === COLOR_SCHEME.DEFAULT ? activeButtonColor : inactiveButtonColor, onPress: updateThemeDefault, accessibilityLabel: "Return to device default mode", size: props.buttonSize, disabled: props.disableDefaultButton, style: props.defaultButtonStyle })));
 };
 export default ThemeToggler;
 const styles = StyleSheet.create({
-    flex: {
+    flexRow: {
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
+    flexColumn: {
+        flexDirection: 'column',
+    }
 });
 //# sourceMappingURL=ThemeToggler.js.map

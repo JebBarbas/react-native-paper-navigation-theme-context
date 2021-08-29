@@ -1,3 +1,5 @@
 import ThemeProvider, { useTheme } from "./ThemeContext";
 import ThemeToggler from './ThemeToggler';
-export { ThemeProvider, useTheme, ThemeToggler };
+import DarkmodeSwitch from "./DarkmodeSwitch";
+import ThemeButton from "./ThemeButton";
+export { ThemeProvider, useTheme, ThemeToggler, DarkmodeSwitch, ThemeButton };

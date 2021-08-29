@@ -1,6 +1,15 @@
 # react-native-paper-navigation-theme-context
 Theme Context for react-native, to support Light, Dark and Default (your device) theme for your react-native-paper and react-navigation components.
 
+---
+
+![Travis (.com)](https://img.shields.io/travis/com/jebbarbas/react-native-paper-navigation-theme-context)
+![David](https://img.shields.io/david/jebbarbas/react-native-paper-navigation-theme-context)
+![npm](https://img.shields.io/npm/dt/react-native-paper-navigation-theme-context)
+![NPM](https://img.shields.io/npm/l/react-native-paper-navigation-theme-context)
+![npm](https://img.shields.io/npm/v/react-native-paper-navigation-theme-context)
+![GitHub top language](https://img.shields.io/github/languages/top/jebbarbas/react-native-paper-navigation-theme-context)
+
 ## Dependencies
 This module deppends on:
 - @react-native-async-storage/async-storage
@@ -85,8 +94,13 @@ Now our component's primary color will be '#dd0000' and accent color will be '#0
 ## Usage - Toggle Theme
 `useTheme()` also provides some functions to instantly change the theme of the App, and uses the AsyncStorage to
 store this in the device, so, the next time you enter in the app the theme will be saved. You can create your own
-Theme Toggler using the `useTheme()` functions (Provider values) or you can use the `<ThemeToggler/>` component that
-does this at its own.
+Theme Toggler Component using the `useTheme()` functions (Provider values) or you can use the default components 
+with the built-in functionality: 
+- `<ThemeToggler/>`: 3 IconButtons, each one changes the theme to one value.
+- `<DarkmodeSwitch/>`: A Switch to turn on the darkmode (can't return to default mode, only toggles between light
+and darkmode).
+- `<ThemeButton/>`: A Button that cycles the 3 themes (light, dark and default) with a different icon to each one.
+
 ```jsx
 // ...
 const ConfigurationScreen = () => {
