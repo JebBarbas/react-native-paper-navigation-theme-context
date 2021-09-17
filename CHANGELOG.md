@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.2.0...v1.3.0) (2021-09-17)
+
+
+### Features
+
+* Now react-navigation isn't a dependency and the paper and navigation themes are in the files ([00851d1](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/commit/00851d13df59aeab1b030de0c19ff5168cced31d))
+
 ## [1.2.0](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.1.3...v1.2.0) (2021-08-29)
 
 
