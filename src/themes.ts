@@ -1,57 +1,18 @@
 import {
     DefaultTheme as NavigationDefaultTheme, 
     DarkTheme as NavigationDarkTheme, 
-} from '@react-navigation/native';
+} from './NavigationThemes';
+import type {Theme as NavigationTheme} from './NavigationThemes'
+
 import {
     DefaultTheme as PaperDefaultTheme, 
     DarkTheme as PaperDarkTheme,
-} from 'react-native-paper';
+} from './PaperThemes';
+import type {Theme as PaperTheme, Mode, FontWeight} from './PaperThemes'
 
-type Mode = 'adaptive' | 'exact';
-type FontWeight = 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+export type MixedTheme = NavigationTheme & PaperTheme
 
-export type MixedTheme = {
-    dark: boolean,
-    mode?: Mode,
-    roundness: number,
-    colors: {
-        primary: string,
-        background: string,
-        surface: string,
-        accent: string,
-        error: string,
-        text: string,
-        onSurface: string,
-        disabled: string,
-        placeholder: string,
-        backdrop: string,
-        notification: string,
-        card: string,
-        border: string,
-    },
-    fonts: {
-        regular: {
-            fontFamily: string,
-            fontWeight?: FontWeight,
-        },
-        medium: {
-            fontFamily: string,
-            fontWeight?: FontWeight,
-        },
-        light: {
-            fontFamily: string,
-            fontWeight?: FontWeight,
-        },
-        thin: {
-            fontFamily: string,
-            fontWeight?: FontWeight,
-        }
-    },
-    animation: {
-        scale: number
-    } 
-}
-export type OptionalMixedTheme = {
+export interface OptionalMixedTheme {
     dark?: boolean,
     mode?: Mode,
     roundness?: number,

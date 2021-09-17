@@ -1,5 +1,5 @@
 # react-native-paper-navigation-theme-context
-Theme Context for react-native, to support Light, Dark and Default (your device) theme for your react-native-paper and react-navigation components.
+Theme Context for react-native, to support Light, Dark and Default (your device) theme for your `react-native-paper` and your `react-navigation` components.
 
 ---
 
@@ -11,18 +11,23 @@ Theme Context for react-native, to support Light, Dark and Default (your device)
 ![GitHub top language](https://img.shields.io/github/languages/top/jebbarbas/react-native-paper-navigation-theme-context)
 
 ## Dependencies
-This module deppends on:
-- @react-native-async-storage/async-storage
-- @react-navigation/native
+To make this module work, you have to be working in a `react-native` project. (If you want to use the built-in
+components to toggle the theme you have to need `react-native-paper` installed aswell).
+
+So basically, these are the modules that you need to have installed.
 - react
 - react-native
-- react-native-paper
+- react-native-paper (optional if you want to use the components)
 
 ## Instalation
 Just run in your console
 `npm i react-native-paper-navigation-theme-context`
 
 ## Usage - Principal
+In this example I'll provide a theme to `react-native-paper` and `react-navigation`, but if you want, you can add
+it to only one of them. (For example if your project doesn't use `react-navigation` and you want to theme the 
+`react-native-paper` components)
+
 Now, instead of the normal PaperTheme and NavigationTheme, you'll use a mix of the two named MixedTheme, note that
 initially, `useMixedTheme()` returns a MixedTheme based on your device's preferences (if you have the darkmode in you
 device, a DarkTheme will be returned).
@@ -96,7 +101,8 @@ Now our component's primary color will be '#dd0000' and accent color will be '#0
 store this in the device, so, the next time you enter in the app the theme will be saved. You can create your own
 Theme Toggler Component using the `useTheme()` functions (Provider values) or you can use the default components 
 with the built-in functionality: 
-- `<ThemeToggler/>`: 3 IconButtons, each one changes the theme to one value.
+- `<ThemeToggler/>`: 3 IconButtons, each one changes the theme to one value. <-- My personal favorite, 
+easy and practical
 - `<DarkmodeSwitch/>`: A Switch to turn on the darkmode (can't return to default mode, only toggles between light
 and darkmode).
 - `<ThemeButton/>`: A Button that cycles the 3 themes (light, dark and default) with a different icon to each one.
