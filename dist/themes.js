@@ -1,5 +1,5 @@
-import { DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme, } from '@react-navigation/native';
-import { DefaultTheme as PaperDefaultTheme, DarkTheme as PaperDarkTheme, } from 'react-native-paper';
+import { DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme, } from './NavigationThemes';
+import { DefaultTheme as PaperDefaultTheme, DarkTheme as PaperDarkTheme, } from './PaperThemes';
 export const overrideTheme = (UsedTheme, override) => {
     const theme = {
         dark: override?.dark ?? UsedTheme.dark,

@@ -1,5 +1,5 @@
 "use strict";
-// Super complicated test script :0000 //
+// Super complicated test script :0 //
 const runtest = async () => {
     console.log('Running tests ...');
     try {
