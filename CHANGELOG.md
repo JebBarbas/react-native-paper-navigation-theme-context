@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.3.0...v1.3.1) (2021-09-17)
+
+
+### Bug Fixes
+
+* JS Builded, I forgot to do it in prev version 🔨 ([67fc0ff](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/commit/67fc0fffc0687a45c6f2891f1fce036333433c85))
+
 ## [1.3.0](https://github.com/JebBarbas/react-native-paper-navigation-theme-context/compare/v1.2.0...v1.3.0) (2021-09-17)
 
 
